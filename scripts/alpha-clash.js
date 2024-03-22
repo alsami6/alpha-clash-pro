@@ -9,18 +9,19 @@
 
 function handleKeyboardKeyUpEvent(){
     const playerPressed = event.key;
-    console.log('Player Prssed', playerPressed);
+    // console.log('Player Prssed', playerPressed);
 
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentAlphabet = currentAlphabetElement.innerText;
     const expectedAlhabet = currentAlphabet.toLocaleLowerCase();
-    console.log(playerPressed, expectedAlhabet);
+    // console.log(playerPressed, expectedAlhabet);
 
     if(playerPressed === expectedAlhabet){
         console.log("You get a point");
+        continueGame();
     }
     else{
-        console.log("Oppps you missed try again");
+        console.log("Oppps you missed. try again");
     }
 }
 
