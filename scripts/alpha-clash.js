@@ -17,11 +17,21 @@ function handleKeyboardKeyUpEvent(){
     // console.log(playerPressed, expectedAlhabet);
 
     if(playerPressed === expectedAlhabet){
-        console.log("You get a point");
+        // console.log("You get a point");
         continueGame();
+        const currentScoreElement = document.getElementById('current-score');
+        const currentScoreText = currentScoreElement.innerText;
+        const currentScore = parseInt(currentScoreText);
+        const newScore = currentScore + 1;
+        currentScoreElement.innerText = newScore;
     }
     else{
-        console.log("Oppps you missed. try again");
+        // console.log("Oppps you missed. try again");
+        const currentLifeElement = document.getElementById('current-life');
+        const currentLifeText = currentLifeElement.innerText;
+        const currentLife = parseInt(currentLifeText)
+        const newLife = currentLife - 1;
+        currentLifeElement.innerText = newLife;
     }
 }
 
@@ -29,7 +39,7 @@ document.addEventListener('keyup', handleKeyboardKeyUpEvent)
 
 function continueGame(){
     const alphabet = GetARandomAlphabet();
-    console.log('Your random alphabet is', alphabet);
+    // console.log('Your random alphabet is', alphabet);
     const currentAlphabetElement = document.getElementById('current-alphabet');
     currentAlphabetElement.innerText = alphabet;
 }
