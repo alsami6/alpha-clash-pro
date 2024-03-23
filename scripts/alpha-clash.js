@@ -9,14 +9,14 @@
 
 function handleKeyboardKeyUpEvent(){
     const playerPressed = event.key;
-    // console.log('Player Prssed', playerPressed);
+    // console.log('Player ', playerPressed);
 
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentAlphabet = currentAlphabetElement.innerText;
-    const expectedAlhabet = currentAlphabet.toLocaleLowerCase();
-    // console.log(playerPressed, expectedAlhabet);
+    const expectedAlphabet = currentAlphabet.toLocaleLowerCase();
+    // console.log(playerPressed, expectedAlphabet);
 
-    if(playerPressed === expectedAlhabet){
+    if(playerPressed === expectedAlphabet){
         // console.log("You get a point");
         continueGame();
         const currentScoreElement = document.getElementById('current-score');
@@ -26,12 +26,16 @@ function handleKeyboardKeyUpEvent(){
         currentScoreElement.innerText = newScore;
     }
     else{
-        // console.log("Oppps you missed. try again");
+        // console.log("oh you missed. try again");
         const currentLifeElement = document.getElementById('current-life');
         const currentLifeText = currentLifeElement.innerText;
         const currentLife = parseInt(currentLifeText)
         const newLife = currentLife - 1;
         currentLifeElement.innerText = newLife;
+         if(newLife === 0){
+            console.log("game over");
+            gameOver();
+         }
     }
 }
 
@@ -46,6 +50,16 @@ function continueGame(){
 
 function play(){
     hideElementById('home-screen');
+    hideElementById('final-score');
     showElementById('play-ground');
+    setTextElementValueById('current-life', 5)
+    setTextElementValueById('current-score', 0)
     continueGame();
+}
+
+function gameOver(){
+    hideElementById('play-ground');
+    showElementById('final-score');
+    const lastScore = getTextElementValuebyId('current-score');
+    setTextElementValueById('last-score', lastScore);
 }
